@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mwx.mapper.PlatformPropertyKeyMapper">
+
+    <select id="getPlatformPropertyKeyByCategoryId" resultType="com.mwx.entity.PlatformPropertyKey">
+        SELECT
+        *
+        FROM
+        platform_property_key a
+        <where>
+            <if test="category1Id!=null and category1Id!=0">
+                or (a.category_id = #{category1Id} AND a.category_level = 1)
+            </if>
+            <if test="category2Id!=null and category2Id!=0">
+                or (a.category_id = #{category2Id} AND a.category_level = 2)
+            </if>
+            <if test="category3Id!=null and category3Id!=0">
+                or (a.category_id = #{category3Id} AND a.category_level =3)
+            </if>
+        </where>
+    </select>
+</mapper>
